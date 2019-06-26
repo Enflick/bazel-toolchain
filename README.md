@@ -18,9 +18,6 @@ llvm_toolchain(
 )
 ```
 
-You can use the toolchain in your builds with
-`--crosstool_top=@llvm_toolchain//:toolchain`
-
 The toolchain can automatically detect your OS type, and use the right
 pre-built binary distribution from llvm.org. The detection is currently
 based on host OS and is not perfect, so some distributions, docker based
