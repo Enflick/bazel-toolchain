@@ -131,6 +131,23 @@ filegroup(
 )
 
 filegroup(
+    name = "shared_lib",
+    srcs = glob(
+        [
+            "lib/lib*.dylib",
+            "lib/clang/%{llvm_version}/lib/**/*.dylib",
+            "lib/clang/%{llvm_version}/lib/**/*.so",
+            "lib/clang/%{llvm_version}/lib/**/*.dll",
+        ],
+        exclude = [
+            "lib/libLLVM*.dylib",
+            "lib/libclang*.dylib",
+            "lib/liblld*.dylib",
+        ],
+    ),
+)
+
+filegroup(
     name = "compiler_components",
     srcs = [
         ":clang",
