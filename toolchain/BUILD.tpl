@@ -135,8 +135,10 @@ filegroup(
     srcs = glob(
         [
             "lib/lib*.dylib",
+            "lib/*.so*",
+            "lib/*.dll",
             "lib/clang/%{llvm_version}/lib/**/*.dylib",
-            "lib/clang/%{llvm_version}/lib/**/*.so",
+            "lib/clang/%{llvm_version}/lib/**/*.so*",
             "lib/clang/%{llvm_version}/lib/**/*.dll",
         ],
         exclude = [
