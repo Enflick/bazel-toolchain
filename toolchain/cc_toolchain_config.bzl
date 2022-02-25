@@ -208,6 +208,10 @@ def cc_toolchain_config(
         toolchain_path_prefix + "include/c++/v1",
         toolchain_path_prefix + "lib/clang/{}/include".format(llvm_version),
         toolchain_path_prefix + "lib64/clang/{}/include".format(llvm_version),
+
+        # Sanitizer blacklist files - asan_blacklist.txt, etc
+        # NOT WORKING?!
+        toolchain_path_prefix + "lib/clang/{}/share".format(llvm_version),
     ]
 
     sysroot_prefix = ""
