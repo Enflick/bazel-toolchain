@@ -28,8 +28,19 @@ def _minor_llvm_version(llvm_version):
 def _darwin(llvm_version, arch):
     major_llvm_version = _major_llvm_version(llvm_version)
     suffix = "darwin-apple" if major_llvm_version == 9 else "apple-darwin"
-    return "clang+llvm-{llvm_version}-{arch}-{suffix}.tar.xz".format(
-        llvm_version=llvm_version, arch=arch, suffix=suffix)
+
+    # Future TODO:  Update this based on LLVM version, when LLVM starts shipping arm64 binaries for Apple
+    # TODO:  Update this to actual version when LLVM project starts shipping arm64 binaries for M1
+    minimum_llvm_version_for_arm64 = 999
+
+    apple_arm64_supported = major_llvm_version >= minimum_llvm_version_for_arm64
+
+    apple_arch = arch
+    if arch == "arm64" and not apple_arm64_supported:
+        apple_arch="x86_64"
+
+    return "clang+llvm-{llvm_version}-{apple_arch}-{suffix}.tar.xz".format(
+        llvm_version=llvm_version, apple_arch=apple_arch, suffix=suffix)
 
 def _windows(llvm_version, arch):
     if arch.endswith('64'):
